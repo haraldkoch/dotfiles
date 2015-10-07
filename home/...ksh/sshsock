@@ -1,3 +1,5 @@
+#!/bin/sh
+
 Temp="`id | tr '=()' '   ' `"
 set $Temp
 user=$3								export user
