@@ -1,0 +1,34 @@
+define-macro rightmargin ^[Xset right-margin 72^M
+define-macro settab4 ^[Xset tab-width 4^M
+define-macro setindent4 ^[Xset c-indentation-increment 4^M
+set allow-^S-and-^Q on
+set bad-filename-extensions .o .ln
+set c-indentation-increment 8
+set expand-environment-variables on
+#set error-format-string ^[^:]*:[^:]*: *\([^,]*\), *line *\([0-9][0-9]*\):
+1 auto-execute-command auto-fill-mode /tmp/snd.*\|.*\.article\|.*\.letter\|/tmp/nn.*\|/usr/tmp/nn.*\|.*/drafts/.*
+1 auto-execute-command show-match .*\.[lchy]$\|.*\.cpp$\|.*\.cc$\|.*\.lisp$\|.*\.scm$\|.*\.slisp\|.*\.pl$\|.*\.pm$\|.*\.java$\|.*\.php$
+1 auto-execute-command c-mode .*\.[chy]$\|.*\.cpp$\|.*\.cc$\|.*\.pl$\|.*\.pm$\|.*\.java$\|.*\.php$
+1 auto-execute-command lisp-mode .*\.l$\|.*\.lisp$\|.*\.scm$\|.*\.slisp
+auto-execute-macro rightmargin .*/drafts/.*
+auto-execute-macro settab4 .*\.[chy]$\|.*\.cpp$\|.*\.pl$\|.*\.java$\|.*\.php$
+auto-execute-macro setindent4 .*\.[chy]$\|.*\.cpp$\|.*\.pl$\|.*\.java$\|.*\.php$
+bind-to-key pause-jove ^[S
+bind-to-key pause-jove ^[s
+bind-to-key i-search-forward ^S
+bind-to-key i-search-reverse ^R
+bind-to-key query-replace-string ^[%
+bind-to-key make-buffer-unmodified ^[*
+bind-to-key filter-region ^X|
+bind-to-key i-shell-command ^[!
+bind-to-key fill-comment ^Xj
+bind-to-key fill-comment ^XJ
+bind-to-key buffer-position ^X=
+bind-to-key kill-previous-word ^[^H
+bind-to-key find-tag-at-point ^Xt
+bind-to-key find-tag-at-point ^XT
+process-bind-to-key interrupt-process ^C
+process-bind-to-key process-newline ^M
+process-bind-to-key eof-process ^D
+set xt-mouse off
+set wrap-process-lines off

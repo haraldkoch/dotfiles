@@ -1,0 +1,55 @@
+## OpenLook Support
+#
+#if test -d /usr/openwin ; then
+#	if test -z "$DISPLAY" ; then
+#		DISPLAY=gamera.utcc.utoronto.ca:0.0	export DISPLAY
+#	fi
+#	FONTPATH=/usr/openwin/lib/fonts			export FONTPATH
+#	OPENWINHOME=/usr/openwin			export OPENWINHOME
+#	LD_LIBRARY_PATH=/usr/openwin/lib		export LD_LIBRARY_PATH
+#	HELPPATH=/usr/openwin/lib/help			export HELPPATH
+#	XFILESEARCHPATH=$OPENWINHOME/lib/%T/%N%S	export XFILESEARCHPATH
+#
+#	# Local OpenLook support
+#	if [ -d /opt/openwin/bin ]; then
+#		basedir=/opt/openwin
+#	elif [ -d /usr/local/openwin ]; then
+#		basedir=/usr/local/openwin
+#	elif [ -d /local/openwin ]; then
+#		basedir=/local/openwin
+#	fi
+#
+#	if test -n "$basedir" ; then 
+##		set path = ( $path $basedir/bin )
+#		FONTPATH=${FONTPATH}:${basedir}/lib/fonts
+#		HELPPATH=${HELPPATH}:${basedir}/lib/help
+#		XFILESEARCHPATH=${XFILESEARCHPATH}:${basedir}/lib/%T/%N%S
+#		unset basedir
+#	fi
+#
+#	# Slate
+#
+#	if test -d /usr/slate ; then
+#		basedir=/usr/slate 
+#	elif test -d /usr/local/slate; then
+#		basedir=/usr/local/slate
+#	elif test -d /opt/slate; then
+#		basedir=/opt/slate 
+#	fi
+#	if test -n "$basedir" ; then
+##		set path = ( $path ${basedir}/bin )
+#		FONTPATH=${FONTPATH}:${basedir}/fonts/x11/openwin/sun4
+#		SLATE_DIR=$basedir			export SLATE_DIR
+#		unset basedir
+#	fi
+#
+#	# DEVGUIDE
+#	if test -d /usr/guide; then
+#	    GUIDEHOME=/usr/guide			export GUIDEHOME
+##	    set path = ( $path /usr/guide/bin )
+#	    MANPATH=${MANPATH}:/usr/guide/man
+#	    HELPPATH=${HELPPATH}:/usr/guide/etc:.
+#	fi
+#
+#fi
+#

@@ -1,0 +1,21 @@
+#
+# setup various environment variables based on the existance of packages etc.
+
+#
+# ENVIRONMENT
+#
+export LESS="QmecnPm?f%f?m?n (%i of %m)..?pB (%pB\%).?e?x - Next\: %x..:<pipe>."
+export LESSCHARSET=utf-8
+export MM_CHARSET=utf-8
+export NAME="Harald Koch"
+
+export METAMAIL_PAGER=less
+export VISUAL=$EDITOR
+export LOGNAME=$USER
+
+export PGPPATH=$HOME/.pgp
+
+# PAGER and EDITOR are set in buildenv.pl
+
+export CVSROOT=chk.dyn.cfrq.net:/home/cvs
+export CVS_RSH=/home/chk/bin/network/cvs-ssh

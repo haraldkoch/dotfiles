@@ -1,0 +1,143 @@
+#!/usr/bin/perl
+
+if ($#ARGV >= $[) {
+    $shell = $ARGV[$[];
+}
+
+@packagedirs = (
+    "/usr/local",
+	"/opt/kde",
+	"/opt/ldap",
+	"/opt/fax",
+	"/opt/cap",
+	"/opt/ncd",
+	"/opt/mail",
+	"/opt/nmh",
+	"/opt/spectrum",
+	"/opt/www",
+	"/opt/noc",
+	"/opt/pbm",
+	"/opt/krs",
+	"/opt/tk",
+	"/home/gnats",
+	"/opt/openwin",
+	"/usr/openwin",
+	"/opt/X11",
+	"/usr/X11R6",
+	"/opt/slate",
+	"/opt/gnu",
+	"/usr/gnu",
+	"/usr/local/jdk1.2.2",
+	"/usr/local/gnu",
+	"/local/gnu",
+	"/opt/games",
+	"/news/readers",
+	"/opt/local",
+        "/usr/local",
+	"/local" );
+
+@pathdirs = (
+    "/usr/bin/mh",
+	"/usr/ucb",
+	"/usr/bsd",
+	"/usr/bin",
+	"/usr/new",
+	"/usr/sbin",
+	"/sbin",
+	"/bin",
+	"/usr/lib",
+	"/local/etc",
+	"/usr/etc",
+	"/etc",
+	"/usr/games" );
+
+@newspathdirs = (
+	"/usr/u/news/lib/bin",
+	"/usr/u/news/bin",
+	"/usr/u/news/bin/batch",
+	"/usr/u/news/bin/ctl",
+	"/usr/u/news/bin/expire",
+	"/usr/u/news/bin/inject",
+	"/usr/u/news/bin/input",
+	"/usr/u/news/bin/maint",
+	"/usr/u/news/bin/relay",
+	"/usr/u/news/bin/local" );
+
+($uid, @rest) = getpwuid($<);
+@path=();
+@manpath=("/usr/man", "/usr/share/man", "/usr/man/preformat", "/usr/share/man/preformat");
+$os = `uname -s`;
+chomp($os);
+
+#if ($uid ne "root") {
+#    @path=(".");
+#}
+if ($uid eq "news") {
+    push(@path, @newspathdirs);
+}
+
+push(@path, <~chk/bin/[A-Z]*>);
+
+if ($uid ne "root") {
+    push(@path, <~chk/bin/[a-z]*>);
+}
+
+foreach $dir (@packagedirs) {
+    if (-d "$dir/sbin") {
+	push(@path, "$dir/sbin");
+    }
+    if (-d "$dir/bin") {
+	push(@path, "$dir/bin");
+    }
+    if (-d "$dir/etc") {
+	push(@path, "$dir/etc");
+    }
+    if (-d "$dir/man") {
+	push(@manpath, "$dir/man");
+    }
+    if (!defined($pager) && -x "$dir/bin/less") {
+	$pager = "$dir/bin/less";
+    }
+    if (!defined($editor) && -x "$dir/bin/jove") {
+	$editor = "$dir/bin/jove";
+    }
+}
+
+foreach $dir (@pathdirs) {
+    if (-d $dir) {
+	push(@path, $dir);
+    }
+    if (!defined($pager) && -x "$dir/less") {
+	$pager = "$dir/less";
+    }
+    if (!defined($editor) && -x "$dir/jove") {
+	$editor = "$dir/jove";
+    }
+}
+
+push(@manpath, "/home/chk/man");
+
+if ($shell eq "sh" || $shell eq "ksh" || $shell eq "bash") {
+    print "PATH=". join(":", @path) . "; export PATH;\n";
+    if (defined($pager)) {
+	print "PAGER=$pager; export PAGER;\n";
+	print "MANPAGER=\"$pager -is\"; export MANPAGER;\n";
+    }
+    if (defined($editor)) {
+	print "EDITOR=$editor; export EDITOR;\n";
+	print "VISUAL=$editor; export VISUAL;\n";
+    }
+    print "MANPATH=\"". join(":", @manpath) . "\"; export MANPATH;\n";
+}
+else {
+    print "set path=(", join(" ",@path), ")\n";
+    print "setenv MANPATH ". join(":", @manpath) . "\n";
+    if (defined($pager)) {
+	print "setenv PAGER $pager\n";
+	print "setenv MANPAGER \"$pager -is\"\n";
+    }
+    if (defined($editor)) {
+	print "setenv EDITOR $editor\n";
+	print "setenv VISUAL $editor\n";
+    }
+}

@@ -1,0 +1,9 @@
+TERM=vt100 export TERM
+if test -n "$LTY" -a -n "$LAYER" ; then
+wai () { layertitle "${user}@${MYHOST}:${PWD}" ; }
+cd () { builtin cd "$@" ; wai ; }
+pushd () { builtin pushd $* ; wai ; }
+alias popd='popd;wai'
+
+wai
+fi
