@@ -136,7 +136,7 @@ GIT_PROMPT_THEME=Solarized
 
 function prompt_callback { gp_set_window_title ${user}@${MYHOST}:${PWD} ; }
 
-source ~/.bash-git-prompt/gitprompt.sh
+source ~/.homesick/repos/bash-git-prompt/gitprompt.sh
 
 # added by travis gem
 [ -f /home/t18050uhn/.travis/travis.sh ] && source /home/t18050uhn/.travis/travis.sh
