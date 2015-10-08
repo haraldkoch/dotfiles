@@ -132,7 +132,7 @@ GIT_PROMPT_ONLY_IN_REPO=1
 # as last entry source the gitprompt script
 # GIT_PROMPT_THEME=Custom # use custom .git-prompt-colors.sh
 # GIT_PROMPT_THEME=Solarized # use theme optimized for solarized color scheme
-GIT_PROMPT_THEME=Solarized
+GIT_PROMPT_THEME=Custom
 
 function prompt_callback { gp_set_window_title ${user}@${MYHOST}:${PWD} ; }
 
