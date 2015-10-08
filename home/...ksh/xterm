@@ -15,9 +15,9 @@ else
 wai () { echo -n ${TBS}${MYHOST}:${PWD}$TBE ; }
 fi
 
-cd () { builtin cd "$@" ; wai ; }
-pushd () { builtin pushd $* ; wai ; }
-alias popd='popd;wai'
+#cd () { builtin cd "$@" ; wai ; }
+#pushd () { builtin pushd $* ; wai ; }
+#alias popd='popd;wai'
 
 #alias penelope='ssh -C -f penelope.cfrq.net". .bashrc;xterm -n penelope-ssh -T penelope-ssh -geometry 80x40+5+5 -iconic -ls"'
 #alias persephone='ssh -C -f persephone.cfrq.net ". .bashrc;xterm -n persephone-ssh -T persephone-ssh -geometry 80x40+5+5 -iconic -ls"'

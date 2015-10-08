@@ -122,6 +122,22 @@ alias tmm-tv='(cd /home/chk/tmm;sh ./tinyMediaManager.sh)'
 alias tmm-movies='(cd /scratch/video/tmm;sh ./tinyMediaManager.sh)'
 alias check-dsl="curl -s 'http://192.168.1.254/cgi/b/dsl/ov/?be=0&l0=1&l1=0'|grep Bandwidth|grep -o '[0-9][0-9]* / [0-9.][0-9.]*'"
 
+# git prompt
+GIT_PROMPT_ONLY_IN_REPO=1
+# GIT_PROMPT_FETCH_REMOTE_STATUS=0   # uncomment to avoid fetching remote status
+
+# GIT_PROMPT_START=...    # uncomment for custom prompt start sequence
+# GIT_PROMPT_END=...      # uncomment for custom prompt end sequence
+
+# as last entry source the gitprompt script
+# GIT_PROMPT_THEME=Custom # use custom .git-prompt-colors.sh
+# GIT_PROMPT_THEME=Solarized # use theme optimized for solarized color scheme
+GIT_PROMPT_THEME=Solarized
+
+function prompt_callback { gp_set_window_title ${user}@${MYHOST}:${PWD} ; }
+
+source ~/.bash-git-prompt/gitprompt.sh
+
 # added by travis gem
 [ -f /home/t18050uhn/.travis/travis.sh ] && source /home/t18050uhn/.travis/travis.sh
 
