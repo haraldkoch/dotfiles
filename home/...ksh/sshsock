@@ -4,9 +4,9 @@ Temp="`id | tr '=()' '   ' `"
 set $Temp
 user=$3								export user
 
-mtime=/home/chk/bin/TEXT/mtime
+#mtime=/home/chk/bin/TEXT/mtime
 
 if test x$SSH_AUTH_SOCK = x ; then
-	SSH_AUTH_SOCK=`find /tmp/ssh-* -type s -print 2>/dev/null|xargs -r $mtime|sort -nr |head -1|awk '{print $2}'`
+	SSH_AUTH_SOCK=`find /tmp/ssh-* -type s -print 2>/dev/null|xargs -r mtime|sort -nr |head -1|awk '{print $2}'`
 	echo "SSH_AUTH_SOCK=$SSH_AUTH_SOCK; export SSH_AUTH_SOCK";
 fi

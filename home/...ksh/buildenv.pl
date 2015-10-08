@@ -6,6 +6,9 @@ if ($#ARGV >= $[) {
 
 @packagedirs = (
     "/usr/local",
+	"/usr/lib/jvm/java-8-oracle",
+	"/usr/lib/jvm/java-7-oracle",
+    "/opt/apache-maven-3.2.1",
 	"/opt/kde",
 	"/opt/ldap",
 	"/opt/fax",
@@ -27,7 +30,6 @@ if ($#ARGV >= $[) {
 	"/opt/slate",
 	"/opt/gnu",
 	"/usr/gnu",
-	"/usr/local/jdk1.2.2",
 	"/usr/local/gnu",
 	"/local/gnu",
 	"/opt/games",
@@ -37,7 +39,6 @@ if ($#ARGV >= $[) {
 	"/local" );
 
 @pathdirs = (
-    "/usr/bin/mh",
 	"/usr/ucb",
 	"/usr/bsd",
 	"/usr/bin",
@@ -45,23 +46,7 @@ if ($#ARGV >= $[) {
 	"/usr/sbin",
 	"/sbin",
 	"/bin",
-	"/usr/lib",
-	"/local/etc",
-	"/usr/etc",
-	"/etc",
 	"/usr/games" );
-
-@newspathdirs = (
-	"/usr/u/news/lib/bin",
-	"/usr/u/news/bin",
-	"/usr/u/news/bin/batch",
-	"/usr/u/news/bin/ctl",
-	"/usr/u/news/bin/expire",
-	"/usr/u/news/bin/inject",
-	"/usr/u/news/bin/input",
-	"/usr/u/news/bin/maint",
-	"/usr/u/news/bin/relay",
-	"/usr/u/news/bin/local" );
 
 ($uid, @rest) = getpwuid($<);
 @path=();
@@ -72,14 +57,16 @@ chomp($os);
 #if ($uid ne "root") {
 #    @path=(".");
 #}
-if ($uid eq "news") {
-    push(@path, @newspathdirs);
+
+$realuser=$ENV{'user'};
+if ($ENV{'SUDO_USER'}) {
+	$realuser = $ENV{'SUDO_USER'};
 }
 
-push(@path, <~chk/bin/[A-Z]*>);
+push(@path, glob("~$realuser/bin/[A-Z]*"));
 
 if ($uid ne "root") {
-    push(@path, <~chk/bin/[a-z]*>);
+    push(@path, glob("~${realuser}/bin/[a-z]*"));
 }
 
 foreach $dir (@packagedirs) {
@@ -88,9 +75,6 @@ foreach $dir (@packagedirs) {
     }
     if (-d "$dir/bin") {
 	push(@path, "$dir/bin");
-    }
-    if (-d "$dir/etc") {
-	push(@path, "$dir/etc");
     }
     if (-d "$dir/man") {
 	push(@manpath, "$dir/man");
@@ -115,7 +99,7 @@ foreach $dir (@pathdirs) {
     }
 }
 
-push(@manpath, "/home/chk/man");
+push(@manpath, "/home/$realuser/man");
 
 if ($shell eq "sh" || $shell eq "ksh" || $shell eq "bash") {
     print "PATH=". join(":", @path) . "; export PATH;\n";

@@ -1,6 +1,4 @@
-Temp="`id | tr '=()' '   ' `"
-set $Temp
-user=$3								export user
+user="`id | tr '=()' '   ' | awk '{print $3}'`"			export user
 
 if test `expr "$-" : '.*i.*'` != 0 ; then
 	interactive=1
@@ -48,9 +46,6 @@ if test "$pathset" != 1 -o \( $user = root -a "$ROOTpathset" != 1 \) -o \( $user
 	if test $user = root ; then
 		ROOTpathset=1 export ROOTpathset
 	fi
-	if test $user = news ; then
-		NEWSpathset=1 export NEWSpathset
-	fi
 	pathset=1 export pathset
 fi
 
@@ -67,13 +62,10 @@ alias RM='/bin/rm -f'
 alias cls='clear'
 alias mv='/bin/mv -i'
 alias mx='/bin/chmod +x'
-alias pixtoxbm='pixtoppm | ppmtopgm | pgmtopbm -threshold -value 0.5 | pbmtoxbm'
 alias psmem="ps aux|sort -nr +4 -5"
-alias psroff='/usr/bin/psroff -h'
+alias tps='ps auxf'
 alias rm='/bin/rm -i'
-alias unshar='unshar -h POSTER'
 alias which='alias | $dotdot/which.perl -a'
-alias xv='/usr/bin/X11/xv -8 -perfect'
 alias findnewest="find . -type f -print0|xargs -0 stat -c '%Y %n'|sort -n"
 alias flac2mp3='find . -type f -name '"'"'*.flac'"'"' -print0 | while read -d $'"'"'\0'"'"' a; do avconv -i "$a" -c:a libmp3lame -qscale:a 2 "${a[@]/%flac/mp3}";done'
 
@@ -88,6 +80,7 @@ if [ -x /bin/su ] ; then
 else
 	su () { /usr/bin/su $*;wai ; }
 fi
+mywhois () { whois -h rs.internic.net $* ; whois -h crcd.canet.ca $* ; whois -h whois.ra.net $* ; }
 
 #
 # Path Handling Stuff
@@ -117,7 +110,7 @@ if test -n "$interactive" -a -r $dotdot/$TERM ; then
 	. $dotdot/$TERM
 fi
 
-alias wmailq='watch -n 15 "(mailq 2>/dev/null)"'
+alias update_calibre='sudo -v && wget -nv -O- https://raw.githubusercontent.com/kovidgoyal/calibre/master/setup/linux-installer.py | sudo python -c "import sys; main=lambda:sys.stderr.write('"'"'Download failed\n'"'"'); exec(sys.stdin.read()); main()"'
 
 alias lish-persephone='ssh -t chk@lish-atlanta.linode.com persephone'
 alias lish-penelope='ssh -t chk@lish-newark.linode.com penelope'
@@ -128,6 +121,12 @@ alias sshkeys="/usr/bin/ssh-add .ssh/identity .ssh/id_github .ssh/id_rsa .ssh/id
 alias tmm-tv='(cd /home/chk/tmm;sh ./tinyMediaManager.sh)'
 alias tmm-movies='(cd /scratch/video/tmm;sh ./tinyMediaManager.sh)'
 alias check-dsl="curl -s 'http://192.168.1.254/cgi/b/dsl/ov/?be=0&l0=1&l1=0'|grep Bandwidth|grep -o '[0-9][0-9]* / [0-9.][0-9.]*'"
+
+# added by travis gem
+[ -f /home/t18050uhn/.travis/travis.sh ] && source /home/t18050uhn/.travis/travis.sh
+
+# work
+[ `hostname -s` = uhnsimsws02 ] && source $dotdot/work
 
 # homeshick integration
 source "$HOME/.homesick/repos/homeshick/homeshick.sh"

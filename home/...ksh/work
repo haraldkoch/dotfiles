@@ -1,0 +1,63 @@
+CDPATH=".:~/etc/cdLinks:~:~/workspaces/git:~/workspaces/svn"	export CDPATH
+
+# for the Whiteboard
+export _JAVA_OPTIONS='-Xmx128m'
+
+alias wb-dev1='javaws http://wbdev1:8080/wb4/wb4-ui-swing.jnlp'
+alias wb-dev2='javaws http://wbdev2:8080/wb4/wb4-ui-swing.jnlp'
+alias wb-prod='javaws http://uhnvwhb10:8080/wb4/wb4-ui-swing.jnlp'
+alias wb-prod3='javaws http://uhnvwhb11:8080/wb4/wb4-ui-swing.jnlp'
+
+nojava() {
+	pathrm /opt/jdk1.6.0_45/bin
+	pathrm /opt/jdk1.7.0_55/bin
+	pathrm /usr/lib/jvm/java-7-oracle
+	pathrm /opt/jdk1.8.0/bin
+	pathrm /usr/lib/jvm/java-8-oracle/
+	unset JAVA_HOME
+}
+jdk6() {
+	nojava
+	export JAVA_HOME=/opt/jdk1.6.0_45
+	pathfirst ${JAVA_HOME}/bin
+}
+jdk7() {
+	nojava
+        export JAVA_HOME=/usr/lib/jvm/java-7-oracle
+	pathfirst ${JAVA_HOME}/bin
+ }
+jdk8() {
+	nojava
+	export JAVA_HOME=/usr/lib/jvm/java-8-oracle
+	pathfirst ${JAVA_HOME}/bin
+}
+
+nomaven() {
+	unset MAVEN_HOME
+	pathrm /opt/apache-maven-2.2.1/bin
+	pathrm /opt/apache-maven-3.0.5/bin
+	pathrm /opt/apache-maven-3.1.1/bin
+	pathrm /opt/apache-maven-3.2.1/bin
+}
+
+maven2() {
+	nomaven
+	export MAVEN_HOME=/opt/apache-maven-2.2.1
+	pathfirst ${MAVEN_HOME}/bin
+}
+
+maven30() {
+	nomaven
+	export MAVEN_HOME=/opt/apache-maven-3.0.5
+	pathfirst ${MAVEN_HOME}/bin
+}
+maven31() {
+	nomaven
+	export MAVEN_HOME=/opt/apache-maven-3.1.1
+	pathfirst ${MAVEN_HOME}/bin
+}
+maven32() {
+	nomaven
+	export MAVEN_HOME=/opt/apache-maven-3.2.1
+	pathfirst ${MAVEN_HOME}/bin
+}
