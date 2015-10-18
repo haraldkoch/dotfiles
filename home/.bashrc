@@ -14,13 +14,15 @@ CDPATH=".:~/etc/cdLinks:~:~/src:/scratch/video"			export CDPATH
 HISTFILE=/var/tmp/.history.$user				export HISTFILE
 HISTSIZE=500							export HISTSIZE
 HISTFILESIZE=500						export HISTFILESIZE
+HISTCONTROL=ignoreboth						export HISTCONTROL
 FIGNORE=".o:~"							export FIGNORE
 
 notify=1
-history_control=ignoreboth
-command_oriented_history=1
 no_exit_on_failed_exec=1
 ignoreeof=0
+shopt -s histappend
+# check windowsize after each command
+shopt -s checkwinsize
 
 MYHOST=`hostname|sed -e 's/\..*$//'`
 export MYHOST
@@ -139,7 +141,7 @@ function prompt_callback { gp_set_window_title ${user}@${MYHOST}:${PWD} ; }
 source ~/.homesick/repos/bash-git-prompt/gitprompt.sh
 
 # added by travis gem
-[ -f /home/t18050uhn/.travis/travis.sh ] && source /home/t18050uhn/.travis/travis.sh
+[ -f ~/.travis/travis.sh ] && source ~/.travis/travis.sh
 
 # work
 [ `hostname -s` = uhnsimsws02 ] && source $dotdot/work
