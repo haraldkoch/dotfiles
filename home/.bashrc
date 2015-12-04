@@ -126,7 +126,9 @@ alias tmm-tv='(cd /home/chk/tmm;sh ./tinyMediaManager.sh)'
 alias tmm-movies='(cd /scratch/video/tmm;sh ./tinyMediaManager.sh)'
 alias check-dsl="curl -s 'http://192.168.1.254/cgi/b/dsl/ov/?be=0&l0=1&l1=0'|grep Bandwidth|grep -o '[0-9][0-9]* / [0-9.][0-9.]*'"
 
-# git prompt
+##############
+# git prompt #
+##############
 GIT_PROMPT_ONLY_IN_REPO=1
 # GIT_PROMPT_FETCH_REMOTE_STATUS=0   # uncomment to avoid fetching remote status
 
@@ -142,14 +144,27 @@ function prompt_callback { gp_set_window_title ${user}@${MYHOST}:${PWD} ; }
 
 source ~/.homesick/repos/bash-git-prompt/gitprompt.sh
 
-# added by travis gem
+##########
+# travis #
+##########
 [ -f ~/.travis/travis.sh ] && source ~/.travis/travis.sh
 
-# work
+########
+# work #
+########
 [ `hostname -s` = uhnsimsws02 ] && source $dotdot/work
 
-# homeshick integration
+#############
+# homeshick #
+#############
 source "$HOME/.homesick/repos/homeshick/homeshick.sh"
 source "$HOME/.homesick/repos/homeshick/completions/homeshick-completion.bash"
 
 homeshick --quiet refresh
+
+###########
+# ansible #
+###########
+if [ -r ~/workspaces/git/ansible/hacking/env-setup ] ; then
+	source ~/workspaces/git/ansible/hacking/env-setup -q
+fi
