@@ -120,10 +120,16 @@ alias lish-persephone='ssh -t chk@lish-atlanta.linode.com persephone'
 alias lish-penelope='ssh -t chk@lish-newark.linode.com penelope'
 
 alias list-packages="dpkg -l |awk '{print \$2}'|sed -e 's/\:\(i386\|amd64\)$//'"
-alias sshkeys="/usr/bin/ssh-add .ssh/identity .ssh/id_github .ssh/id_rsa .ssh/id_whatbox"
+alias sshkeys="/usr/bin/ssh-add .ssh/identity .ssh/id_github .ssh/id_rsa .ssh/id_whatbox .ssh/id_media"
 
 alias tmm-tv='(cd /home/chk/tmm;sh ./tinyMediaManager.sh)'
 alias tmm-movies='(cd /scratch/video/tmm;sh ./tinyMediaManager.sh)'
+alias tmm-mount='sshfs -o IdentityFile=/home/chk/.ssh/id_media media@mnemosyne:/media /scratch/video/mnemosyne -o uid=1000 -o gid=1000'
+alias tmm-umount='fusermount -u /scratch/video/mnemosyne'
+function sync-movies {
+	rsync --exclude='*.r??' -e 'ssh -i /home/chk/.ssh/id_media' -avP $@ /scratch/video/new-movies/ media@mnemosyne:/media/movies/
+}
+
 alias check-dsl="curl -s 'http://192.168.1.254/cgi/b/dsl/ov/?be=0&l0=1&l1=0'|grep Bandwidth|grep -o '[0-9][0-9]* / [0-9.][0-9.]*'"
 
 ##############
