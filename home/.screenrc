@@ -1,0 +1,6 @@
+# Ned's .screenrc
+escape ^L^L
+vbell off
+defscrollback 8000
+hardstatus alwayslastline
+hardstatus string '%{= KW}%-w%{= gW}%50> %n %t %{= KW}%+w%< %{= kG}%-=%{-}'
