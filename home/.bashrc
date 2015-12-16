@@ -148,6 +148,8 @@ GIT_PROMPT_THEME=Custom
 
 function prompt_callback { gp_set_window_title ${user}@${MYHOST}:${PWD} ; }
 
+source /usr/share/doc/pkgfile/command-not-found.bash
+
 source ~/.homesick/repos/bash-git-prompt/gitprompt.sh
 
 ##########
