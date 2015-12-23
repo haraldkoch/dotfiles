@@ -148,7 +148,10 @@ GIT_PROMPT_THEME=Custom
 
 function prompt_callback { gp_set_window_title ${user}@${MYHOST}:${PWD} ; }
 
-source /usr/share/doc/pkgfile/command-not-found.bash
+# command-not-found support for Arch; it is builtin in Ubuntu
+if [ -r /usr/share/doc/pkgfile/command-not-found.bash ] ; then
+	source /usr/share/doc/pkgfile/command-not-found.bash
+fi
 
 source ~/.homesick/repos/bash-git-prompt/gitprompt.sh
 
