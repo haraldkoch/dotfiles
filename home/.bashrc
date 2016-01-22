@@ -168,7 +168,9 @@ source ~/.homesick/repos/bash-git-prompt/gitprompt.sh
 source "$HOME/.homesick/repos/homeshick/homeshick.sh"
 source "$HOME/.homesick/repos/homeshick/completions/homeshick-completion.bash"
 
-homeshick --quiet refresh
+if test -n "$interactive" ; then
+	homeshick --quiet refresh
+fi
 
 ###########
 # ansible #
