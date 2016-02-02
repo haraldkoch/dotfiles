@@ -68,6 +68,7 @@ alias psmem="ps aux|sort -nr +4 -5"
 alias tps='ps auxf'
 alias rm='/bin/rm -i'
 alias which='alias | $dotdot/which.perl -a'
+alias whois '/usr/bin/whois -r'
 alias findnewest="find . -type f -print0|xargs -0 stat -c '%Y %n'|sort -n"
 alias flac2mp3='find . -type f -name '"'"'*.flac'"'"' -print0 | while read -d $'"'"'\0'"'"' a; do avconv -i "$a" -c:a libmp3lame -qscale:a 2 "${a[@]/%flac/mp3}";done'
 
@@ -82,7 +83,6 @@ if [ -x /bin/su ] ; then
 else
 	su () { /usr/bin/su $*;wai ; }
 fi
-mywhois () { whois -h rs.internic.net $* ; whois -h crcd.canet.ca $* ; whois -h whois.ra.net $* ; }
 
 #
 # Path Handling Stuff
