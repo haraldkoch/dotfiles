@@ -1,0 +1,3 @@
+#!/bin/sh
+
+stat -t "$@" | awk '{print $13, "	", $1}'
