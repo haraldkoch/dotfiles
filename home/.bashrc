@@ -120,7 +120,7 @@ alias lish-persephone='ssh -t chk@lish-atlanta.linode.com persephone'
 alias lish-penelope='ssh -t chk@lish-newark.linode.com penelope'
 
 alias list-packages="dpkg -l |awk '{print \$2}'|sed -e 's/\:\(i386\|amd64\)$//'"
-alias sshkeys="/usr/bin/ssh-add .ssh/identity .ssh/id_github .ssh/id_rsa .ssh/id_whatbox .ssh/id_media"
+alias sshkeys="/usr/bin/ssh-add .ssh/id_rsa .ssh/id_fnord .ssh/id_github .ssh/id_media"
 
 alias tmm-tv='(cd /home/chk/tmm;sh ./tinyMediaManager.sh)'
 alias tmm-movies='(cd /scratch/video/tmm;sh ./tinyMediaManager.sh)'
