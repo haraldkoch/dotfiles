@@ -129,6 +129,9 @@ alias tmm-umount='fusermount -u /scratch/video/mnemosyne'
 
 alias check-dsl="curl -s 'http://192.168.1.254/cgi/b/dsl/ov/?be=0&l0=1&l1=0'|grep Bandwidth|grep -o '[0-9][0-9]* / [0-9.][0-9.]*'"
 
+alias laptop="xrandr --output LVDS1 --auto --output DVI-1-0 --off"
+alias desktop="xrandr --output LVDS1 --off --output DVI-1-0 --auto"
+
 ##############
 # git prompt #
 ##############
