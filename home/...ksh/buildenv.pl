@@ -35,7 +35,6 @@ if ($#ARGV >= $[) {
 	"/opt/games",
 	"/news/readers",
 	"/opt/local",
-        "/usr/local",
 	"/local" );
 
 @pathdirs = (
@@ -88,7 +87,7 @@ foreach $dir (@packagedirs) {
 }
 
 foreach $dir (@pathdirs) {
-    if (-d $dir) {
+    if (-d $dir && ! -l $dir) {
 	push(@path, $dir);
     }
     if (!defined($pager) && -x "$dir/less") {
