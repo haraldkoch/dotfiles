@@ -110,12 +110,12 @@ if test -n "$interactive" -a -r $dotdot/$TERM ; then
 fi
 
 alias check-dsl="curl -s 'http://192.168.1.254/cgi/b/dsl/ov/?be=0&l0=1&l1=0'|grep Bandwidth|grep -o '[0-9][0-9]* / [0-9.][0-9.]*'"
-alias desktop="xrandr --output DVI-I-1 --auto --left-of LVDS-1"
+alias desktop="xrandr --output HDMI-3 --auto --left-of LVDS-1"
 alias dropbox='/usr/bin/dropbox-cli'
 alias findnewest="find . -type f -print0|xargs -0 stat -c '%Y %n'|sort -n"
 alias flac2mp3='find . -type f -name '"'"'*.flac'"'"' -print0 | while read -d $'"'"'\0'"'"' a; do avconv -i "$a" -c:a libmp3lame -qscale:a 2 "${a[@]/%flac/mp3}";done'
-alias laptop="xrandr --output LVDS-1 --auto --output DVI-I-1 --off"
-alias fixscreen="xrandr --output LVDS-1 --off ; sleep 3 ; xrandr --output LVDS-1 --auto"
+alias laptop="xrandr --output LVDS-1 --auto --output HDMI-3 --off --output DVI-I-1 --off"
+alias fixscreen="xrandr --output LVDS-1 --off ; sleep 1 ; xrandr --output LVDS-1 --auto"
 alias lish-penelope='ssh -t chk@lish-newark.linode.com penelope'
 alias lish-persephone='ssh -t chk@lish-atlanta.linode.com persephone'
 alias list-packages="dpkg -l |awk '{print \$2}'|sed -e 's/\:\(i386\|amd64\)$//'"
