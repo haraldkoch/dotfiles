@@ -119,7 +119,7 @@ alias fixscreen="xrandr --output LVDS-1 --off ; sleep 1 ; xrandr --output LVDS-1
 alias lish-penelope='ssh -t chk@lish-newark.linode.com penelope'
 alias lish-persephone='ssh -t chk@lish-atlanta.linode.com persephone'
 alias list-packages="dpkg -l |awk '{print \$2}'|sed -e 's/\:\(i386\|amd64\)$//'"
-alias sshkeys="/usr/bin/ssh-add .ssh/id_rsa .ssh/id_fnord .ssh/id_github .ssh/id_media"
+alias sshkeys="/usr/bin/ssh-add ~/.ssh/id_ed25519 ~/.ssh/id_rsa ~/.ssh/id_github"
 alias stereo='mpc -h stereo'
 alias tmm-mount='sshfs -o IdentityFile=/home/chk/.ssh/id_media media@mnemosyne:/media /scratch/video/mnemosyne -o uid=1000 -o gid=1000'
 alias tmm-movies='(cd /scratch/video/tmm;sh ./tinyMediaManager.sh)'
