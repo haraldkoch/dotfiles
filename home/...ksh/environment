@@ -1,6 +1,7 @@
 #
 # setup various environment variables based on the existance of packages etc.
 
+
 #
 # ENVIRONMENT
 #
@@ -25,3 +26,5 @@ export SWT_GTK3=1
 
 export CVSROOT=chk.dyn.cfrq.net:/home/cvs
 export CVS_RSH=/home/chk/bin/network/cvs-ssh
+
+source $dotdot/env_private

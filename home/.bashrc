@@ -43,6 +43,7 @@ fi
 set -o emacs
 
 if test "$pathset" != 1 -o \( $user = root -a "$ROOTpathset" != 1 \) -o \( $user = news -a "$NEWSpathset" != 1 \) ; then
+	. $dotdot/environment
 	eval `$dotdot/buildenv.pl bash`
 
 	if test $user = root ; then
