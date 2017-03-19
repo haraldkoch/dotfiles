@@ -27,4 +27,8 @@ export SWT_GTK3=1
 export CVSROOT=chk.dyn.cfrq.net:/home/cvs
 export CVS_RSH=/home/chk/bin/network/cvs-ssh
 
+if [ ! -e $dotdot/env_private ] ; then
+    touch $dotdot/env_private
+fi
+
 source $dotdot/env_private
