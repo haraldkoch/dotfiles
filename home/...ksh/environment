@@ -5,7 +5,21 @@
 #
 # ENVIRONMENT
 #
-export LESS="QmecnPm?f%f?m?n (%i of %m)..?pB (%pB\%).?e?x - Next\: %x..:<pipe>."
+
+# -Q - quiet (no terminal bell)
+# -m - long prompt with percentage of file
+# -e - quit-at-eof - exit automatically the second time EOF is reached
+# -c - clear-screen (might delete this)
+# -n - suppress line numbers (useful for large files)
+# -Pm?f%f?m?n (%i of %m)..?pB (%pB\%).?e?x - Next\: %x..:<pipe>.
+#   sets the (medium) prompt
+#export LESS="QmecnPm?f%f?m?n (%i of %m)..?pB (%pB\%).?e?x - Next\: %x..:<pipe>."
+# trying something with git:
+# - remove -c for clear screen and add:
+#   -X (required) don't output initialization and deinitialization strings
+#   -R output colour control escapes in raw characters (for git)
+#   -F exit if less than one screen (for git)
+export LESS="XRFQmenPm?f%f?m?n (%i of %m)..?pB (%pB\%).?e?x - Next\: %x..:<pipe>."
 export LESSCHARSET=utf-8
 export MM_CHARSET=utf-8
 export NAME="Harald Koch"
