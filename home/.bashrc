@@ -110,6 +110,7 @@ if test -n "$interactive" -a -r $dotdot/$TERM ; then
 	. $dotdot/$TERM
 fi
 
+alias duplicity-list-files="backblaze-b2 list-file-names cfrq-backups | jq -r '.files[] |  [.fileName ,.size] | @tsv'"
 alias check-dsl="curl -s 'http://192.168.1.254/cgi/b/dsl/ov/?be=0&l0=1&l1=0'|grep Bandwidth|grep -o '[0-9][0-9]* / [0-9.][0-9.]*'"
 alias desktop="xrandr --output HDMI-3 --auto --left-of LVDS-1"
 alias dropbox='/usr/bin/dropbox-cli'
