@@ -147,11 +147,19 @@ GIT_PROMPT_THEME=Custom
 function prompt_callback { gp_set_window_title ${user}@${MYHOST}:${PWD} ; }
 
 # command-not-found support for Arch; it is builtin in Ubuntu
-if [ -r /usr/share/doc/pkgfile/command-not-found.bash ] ; then
-	source /usr/share/doc/pkgfile/command-not-found.bash
+if test -n "$interactive" ; then
+	if [ -r /usr/share/doc/pkgfile/command-not-found.bash ] ; then
+		source /usr/share/doc/pkgfile/command-not-found.bash
+	fi
 fi
 
-source ~/.homesick/repos/bash-git-prompt/gitprompt.sh
+##############
+# git prompt #
+##############
+
+if test -n "$interactive" ; then
+	source ~/.homesick/repos/bash-git-prompt/gitprompt.sh
+fi
 
 ##########
 # travis #
@@ -166,10 +174,10 @@ source ~/.homesick/repos/bash-git-prompt/gitprompt.sh
 #############
 # homeshick #
 #############
-source "$HOME/.homesick/repos/homeshick/homeshick.sh"
-source "$HOME/.homesick/repos/homeshick/completions/homeshick-completion.bash"
-
 if test -n "$interactive" ; then
+	source "$HOME/.homesick/repos/homeshick/homeshick.sh"
+	source "$HOME/.homesick/repos/homeshick/completions/homeshick-completion.bash"
+
 	homeshick --quiet refresh
 fi
 
