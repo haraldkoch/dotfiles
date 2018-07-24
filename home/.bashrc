@@ -147,10 +147,8 @@ GIT_PROMPT_THEME=Custom
 function prompt_callback { gp_set_window_title ${user}@${MYHOST}:${PWD} ; }
 
 # command-not-found support for Arch; it is builtin in Ubuntu
-if test -n "$interactive" ; then
-	if [ -r /usr/share/doc/pkgfile/command-not-found.bash ] ; then
-		source /usr/share/doc/pkgfile/command-not-found.bash
-	fi
+if [ -n "$interactive" -a -r /usr/share/doc/pkgfile/command-not-found.bash ] ; then
+	source /usr/share/doc/pkgfile/command-not-found.bash
 fi
 
 ##############
