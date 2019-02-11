@@ -43,7 +43,7 @@ fi
 set -o emacs
 
 if test "$pathset" != 1 -o \( $user = root -a "$ROOTpathset" != 1 \) -o \( $user = news -a "$NEWSpathset" != 1 \) ; then
-	. $dotdot/environment
+	source $dotdot/environment
 	eval `$dotdot/buildenv.pl bash`
 
 	if test $user = root ; then
@@ -55,6 +55,8 @@ fi
 eval `$dotdot/sshsock`
 
 umask 022
+
+source $dotdot/aliases
 
 alias l='/bin/ls -sCF'
 alias la='/bin/ls -asCF'
@@ -121,12 +123,8 @@ alias fixscreen="xrandr --output LVDS-1 --off ; sleep 1 ; xrandr --output LVDS-1
 alias lish-penelope='ssh -t chk@lish-newark.linode.com penelope'
 alias lish-persephone='ssh -t chk@lish-atlanta.linode.com persephone'
 alias list-packages="dpkg -l |awk '{print \$2}'|sed -e 's/\:\(i386\|amd64\)$//'"
-alias sshkeys="/usr/bin/ssh-add ~/.ssh/id_ed25519 ~/.ssh/id_rsa ~/.ssh/id_github"
+alias sshkeys="/usr/bin/ssh-add ~/.ssh/id_ed25519 ~/.ssh/id_github"
 alias stereo='mpc -h stereo'
-alias tmm-mount='sshfs -o IdentityFile=/home/chk/.ssh/id_media media@mnemosyne:/media /scratch/video/mnemosyne -o uid=1000 -o gid=1000'
-alias tmm-movies='(cd /scratch/video/tmm;sh ./tinyMediaManager.sh)'
-alias tmm-tv='(cd /home/chk/tmm;sh ./tinyMediaManager.sh)'
-alias tmm-umount='fusermount -u /scratch/video/mnemosyne'
 alias update_calibre='sudo -v && wget -nv -O- https://raw.githubusercontent.com/kovidgoyal/calibre/master/setup/linux-installer.py | sudo python2 -c "import sys; main=lambda:sys.stderr.write('"'"'Download failed\n'"'"'); exec(sys.stdin.read()); main()"'
 #alias whois='/usr/bin/whois -r'
 
