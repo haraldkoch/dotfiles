@@ -181,3 +181,10 @@ if test -n "$interactive" ; then
 
 	homeshick --quiet refresh
 fi
+
+#############
+# Azure CLI #
+#############
+if test -n "$interactive" -a -f /home/chk/lib/azure-cli/az.completion ; then
+	source /home/chk/lib/azure-cli/az.completion
+fi
