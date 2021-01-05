@@ -1,4 +1,4 @@
 alias kdo='/usr/bin/kubectl --kubeconfig=/home/chk/.kube/kochhaus-dev-kubeconfig.yaml'
 alerts () {
-    curl -s http://heimdall:9093/alerts/api/v2/alerts | jq -S '.[]|.labels.alertname + " " + .labels.instance'
+    curl -s 'http://heimdall:9093/alerts/api/v2/alerts?silenced=false&inhibited=false' | jq -S '.[]|.labels.alertname + " " + .labels.instance'
 }
