@@ -8,7 +8,7 @@ if ($#ARGV >= $[) {
     "/usr/local",
 	"/usr/lib/jvm/java-8-oracle",
 	"/usr/lib/jvm/java-7-oracle",
-    "/opt/apache-maven-3.2.1",
+#    "/opt/apache-maven-3.2.1",
 	"/opt/kde",
 	"/opt/ldap",
 	"/opt/fax",
