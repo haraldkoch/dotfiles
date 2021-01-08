@@ -1,4 +1,15 @@
 alias kdo='/usr/bin/kubectl --kubeconfig=/home/chk/.kube/kochhaus-dev-kubeconfig.yaml'
+
+alias kubectlold='kubectl --context=infra-old'
+alias kubectlnew='kubectl --context=infra-new'
+
 alerts () {
     curl -s 'http://heimdall:9093/alerts/api/v2/alerts?silenced=false&inhibited=false' | jq -S '.[]|.labels.alertname + " " + .labels.instance'
+}
+
+function kubectlgetall {
+  for i in $(kubectl api-resources --verbs=list --namespaced -o name | grep -v "events.events.k8s.io" | grep -v "events" | sort | uniq); do
+    echo "Resource:" $i
+    kubectl -n ${1} get --ignore-not-found ${i}
+  done
 }
