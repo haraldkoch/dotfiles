@@ -13,3 +13,12 @@ function kubectlgetall {
     kubectl -n ${1} get --ignore-not-found ${i}
   done
 }
+
+borgsizes() {
+	printf 'Archive\t\t\t\t\tOrig\tComp\tDedup\n'
+	printf '%-32.32s\t%s\t%s\t%s\n' \
+		$(sudo -E borg info --json --sort-by name --glob-archives '*' | \
+		  jq '.archives[] | "\(.name) \(.stats.original_size) \(.stats.compressed_size) \(.stats.deduplicated_size)"' | \
+		  sed --expression='s/^"//;s/"$//' | \
+		  numfmt --field='2-4' --to=iec)
+}
