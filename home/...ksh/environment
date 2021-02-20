@@ -29,7 +29,10 @@ export VISUAL=$EDITOR
 export LOGNAME=$USER
 
 export PGPPATH=$HOME/.pgp
+
+if [ -e $HOME/.vault_pass.txt ] ; then
 export ANSIBLE_VAULT_PASSWORD_FILE=$HOME/.vault_pass.txt
+fi
 
 export GOPATH=~/golang
 
