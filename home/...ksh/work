@@ -1,5 +1,7 @@
 CDPATH=".:~/etc/cdLinks:~:~/workspaces/git:~/workspaces/svn"	export CDPATH
 
+unset ANSIBLE_VAULT_PASSWORD_FILE
+
 alias wb-dev1='javaws http://wbdev1:8080/wb4/wb4-ui-swing.jnlp'
 alias wb-dev2='javaws http://wbdev2:8080/wb4/wb4-ui-swing.jnlp'
 alias wb-prod='javaws http://uhnvwhb10:8080/wb4/wb4-ui-swing.jnlp'

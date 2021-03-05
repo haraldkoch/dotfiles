@@ -10,7 +10,7 @@ alerts () {
 function kubectlgetall {
   for i in $(kubectl api-resources --verbs=list --namespaced -o name | grep -v "events.events.k8s.io" | grep -v "events" | sort | uniq); do
     echo "Resource:" $i
-    kubectl -n ${1} get --ignore-not-found ${i}
+    kubectl get -n ${1} --ignore-not-found=true ${i}
   done
 }
 
