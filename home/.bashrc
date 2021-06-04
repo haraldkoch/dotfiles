@@ -188,3 +188,11 @@ fi
 if test -n "$interactive" -a -f /home/chk/lib/azure-cli/az.completion ; then
 	source /home/chk/lib/azure-cli/az.completion
 fi
+
+##########
+# direnv #
+##########
+
+if test -x /usr/bin/direnv ; then
+	eval "$(direnv hook bash)"
+fi
