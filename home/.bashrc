@@ -144,7 +144,7 @@ GIT_PROMPT_THEME=Custom
 
 function prompt_callback { gp_set_window_title ${user}@${MYHOST}:${PWD} ; }
 
-if test -n "$interactive" ; then
+if test -n "$interactive" -a -r ~/.homesick/repos/bash-git-prompt/gitprompt.sh ; then
 	source ~/.homesick/repos/bash-git-prompt/gitprompt.sh
 fi
 
@@ -175,7 +175,7 @@ fi
 #############
 # homeshick #
 #############
-if test -n "$interactive" ; then
+if test -n "$interactive" -a -r ~/.homesick/repos/homeshick/homeshick.sh ; then
 	source "$HOME/.homesick/repos/homeshick/homeshick.sh"
 	source "$HOME/.homesick/repos/homeshick/completions/homeshick-completion.bash"
 
