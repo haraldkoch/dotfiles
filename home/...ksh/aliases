@@ -22,3 +22,5 @@ borgsizes() {
 		  sed --expression='s/^"//;s/"$//' | \
 		  numfmt --field='2-4' --to=iec)
 }
+
+alias dnstools="kubectl run -it --rm --restart=Never --image=infoblox/dnstools:latest dnstools"
