@@ -197,3 +197,9 @@ fi
 if test -x /usr/bin/direnv ; then
 	eval "$(direnv hook bash)"
 fi
+
+#############
+# minio cli #
+#############
+
+complete -C /usr/bin/mcli mcli
