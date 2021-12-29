@@ -178,8 +178,8 @@ fi
 ########
 # work #
 ########
-[ `hostname -s` = uhnsimsws02 ] && source $dotdot/work
-[ `hostname -s` = chkdcb-ldvapp01 ] && source $dotdot/work
+[ $MYHOST = uhnsimsws02 ] && source $dotdot/work
+[ $MYHOST = chkdcb-ldvapp01 ] && source $dotdot/work
 
 #############
 # homeshick #
