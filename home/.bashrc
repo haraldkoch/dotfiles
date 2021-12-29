@@ -24,7 +24,15 @@ shopt -s histappend
 # check windowsize after each command
 shopt -s checkwinsize
 
-MYHOST=`hostname|sed -e 's/\..*$//'`
+if [ -x /bin/hostname ] ; then
+    MYHOST=`hostname|sed -e 's/\..*$//'`
+elif [ -x /bin/hostnaemctl ] ; then
+    MYHOST=`hostnamectl hostname|sed -e 's/\..*$//'`
+elif [ -f /etc/hostname ] ; then
+    MYHOST=`cat /etc/hostname|sed -e 's/\..*$//'`
+else
+    MYHOST=unknown
+fi
 export MYHOST
 
 if test -z "$BASH_VERSION" ; then
