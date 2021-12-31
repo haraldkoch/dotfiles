@@ -39,6 +39,9 @@ export GOPATH=~/golang
 # tell eclipse (SWT) to use GTK3
 export SWT_GTK3=1
 
+# kustomize
+export XDG_CONFIG_HOME=$HOME/.config
+
 # PAGER and EDITOR are set in buildenv.pl
 
 export CVSROOT=chk.dyn.cfrq.net:/home/cvs
