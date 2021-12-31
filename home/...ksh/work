@@ -21,3 +21,6 @@ coredistrodev() {
 alerts () {
 	curl -s 'https://prmdcv-ldvmgt01.uhn.ca/alerts/api/v2/alerts?silenced=false&inhibited=false' | jq -S '.[]|.labels.alertname + " " + .labels.instance'
 }
+
+unalias sshkeys
+alias sshkeys="/usr/bin/ssh-add ~/.ssh/id_ed25519 ~/.ssh/id_ansible_icss"
