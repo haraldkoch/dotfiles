@@ -73,6 +73,11 @@ if ($ENV{'SUDO_USER'}) {
 
 push(@path, glob("~$realuser/bin/[A-Z]*"));
 
+# kubectl plugins
+if(-d glob("~${realuser}/.krew/bin")) {
+    push(@path, glob("~${realuser}/.krew/bin"));
+}
+
 if ($uid ne "root") {
     push(@path, glob("~${realuser}/bin/[a-z]*"));
 }
