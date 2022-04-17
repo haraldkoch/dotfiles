@@ -3,8 +3,6 @@ alias kdo='/usr/bin/kubectl --kubeconfig=/home/chk/.kube/kochhaus-dev-kubeconfig
 alias kubectlold='kubectl --context=infra-old'
 alias kubectlnew='kubectl --context=infra-new'
 
-alias dnstools="kubectl run -it --rm --restart=Never --image=infoblox/dnstools:latest dnstools"
-
 alerts () {
     curl -s 'http://heimdall:9093/alerts/api/v2/alerts?silenced=false&inhibited=false' | jq -S '.[]|.labels.alertname + " " + .labels.instance'
 }
@@ -25,4 +23,7 @@ borgsizes() {
 		  numfmt --field='2-4' --to=iec)
 }
 
-alias dnstools="kubectl run -it --rm --restart=Never --image=infoblox/dnstools:latest dnstools"
+alias dnstools="kubectl run -it --rm --restart=Never --image=ghcr.io/haraldkoch/dnstools:latest dnstools"
+alias nettools="kubectl run -it --rm --restart=Never --image nicolaka/netshoot netshoot -- /bin/bash"
+
+alias containers="kubectl get pods --all-namespaces -o jsonpath=\"{.items[*].spec['containers','initContainers'][*].image}\" |tr -s '[[:space:]]' '\n' |sort |uniq -c"
