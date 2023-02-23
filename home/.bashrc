@@ -118,6 +118,10 @@ alias newpath='eval `$dotdot/buildenv.pl ksh`'
 
 if test -n "$interactive" -a -r $dotdot/$TERM ; then
 	. $dotdot/$TERM
+
+	if test -x /usr/bin/checkupdates ; then
+		echo $(/usr/bin/checkupdates | wc -l) Updates Available.
+	fi
 fi
 
 alias duplicity-list-files="backblaze-b2 list-file-names cfrq-backups | jq -r '.files[] |  [.fileName ,.size] | @tsv'"
@@ -202,7 +206,7 @@ fi
 # direnv #
 ##########
 
-if test -x /usr/bin/direnv ; then
+if test -n "$interactive" -a -x /usr/bin/direnv ; then
 	eval "$(direnv hook bash)"
 fi
 
@@ -210,4 +214,22 @@ fi
 # minio cli #
 #############
 
-complete -C /usr/bin/mcli mcli
+if test -n "$interactive" ; then
+	complete -C /usr/bin/mcli mcli
+fi
+
+##############
+# Tekton CLI #
+##############
+
+if test -n "$interactive" -a -x /usr/bin/tkn ; then
+	eval "$(tkn completion bash)"
+fi
+
+if test -n "$interactive" -a -x /usr/local/bin/argo ; then
+	source <(argo completion bash)
+fi
+
+if test -n "$interactive" -a -x /usr/local/bin/pv_migrate ; then
+	source <(pv-migration completion bash)
+fi
