@@ -35,7 +35,6 @@ if ($#ARGV >= $[) {
 	"/opt/games",
 	"/news/readers",
 	"/opt/local",
-    "/home/chk/.krew",
 	"/local" );
 
 @pathdirs = (
@@ -76,6 +75,11 @@ push(@path, glob("~$realuser/bin/[A-Z]*"));
 # kubectl plugins
 if(-d glob("~${realuser}/.krew/bin")) {
     push(@path, glob("~${realuser}/.krew/bin"));
+}
+
+# pip3 installed programs
+if(-d glob("~${realuser}/.local/bin")) {
+    push(@path, glob("~${realuser}/.local/bin"));
 }
 
 if ($uid ne "root") {
